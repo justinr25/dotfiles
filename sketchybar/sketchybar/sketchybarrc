@@ -1,0 +1,104 @@
+#!/usr/bin/env sh
+
+# Add the aerospace workspace change event
+sketchybar --add event aerospace_workspace_change
+
+# 1. Bar settings (default-like translucent top bar, but premium style)
+sketchybar --bar position=top \
+                 height=40 \
+                 blur_radius=0 \
+                 color=0x00000000 \
+                 shadow=off
+
+# 2. Default settings
+default=(
+  padding_left=6
+  padding_right=6
+  icon.font="JetBrainsMono Nerd Font:Bold:16.0"
+  label.font="JetBrainsMono Nerd Font:Bold:14.0"
+  icon.color=0xffffffff
+  label.color=0xffffffff
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
+# 3. Add Spaces (Workspaces 1-5 + others)
+PERSISTENT_SPACES=("1" "2" "3" "4" "5" "6" "7" "8" "9")
+ALL_WORKSPACES=$(aerospace list-workspaces --all)
+
+for sid in $ALL_WORKSPACES; do
+  # Determine if workspace is persistent
+  is_persistent=false
+  for p in "${PERSISTENT_SPACES[@]}"; do
+    if [ "$p" = "$sid" ]; then
+      is_persistent=true
+    fi
+  done
+
+  # Default visibility: persistent spaces are "on", others are "off"
+  if [ "$is_persistent" = "true" ]; then
+    drawing="on"
+  else
+    drawing="off"
+  fi
+
+  sketchybar --add item "space.$sid" left \
+             --subscribe "space.$sid" aerospace_workspace_change \
+             --set "space.$sid" \
+                   icon="$sid" \
+                   icon.padding_left=10 \
+                   icon.padding_right=10 \
+                   background.color=0x33ffffff \
+                   background.corner_radius=5 \
+                   background.height=26 \
+                   background.drawing=off \
+                   label.drawing=off \
+                   drawing="$drawing" \
+                   click_script="aerospace workspace $sid" \
+                   script="$CONFIG_DIR/plugins/aerospacer.sh $sid"
+done
+
+# 4. Add the Chevron Toggle for spaces
+sketchybar --add item space_chevron left \
+           --set space_chevron \
+                 icon="" \
+                 icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
+                 label.drawing=off \
+                 icon.padding_left=8 \
+                 icon.padding_right=8 \
+                 click_script="$CONFIG_DIR/plugins/workspace_toggle.sh"
+
+# 5. Add Front App indicator
+sketchybar --add item front_app left \
+           --set front_app \
+                 icon.drawing=off \
+                 label.font="JetBrainsMono Nerd Font:Bold:14.0" \
+                 script="$CONFIG_DIR/plugins/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+# 6. Add Right Items (Clock, Volume, Battery)
+sketchybar --add item clock right \
+           --set clock \
+                 icon="" \
+                 update_freq=10 \
+                 script="$CONFIG_DIR/plugins/clock.sh"
+
+sketchybar --add item volume right \
+           --set volume \
+                 script="$CONFIG_DIR/plugins/volume.sh" \
+           --subscribe volume volume_change
+
+sketchybar --add item battery right \
+           --set battery \
+                 update_freq=120 \
+                 script="$CONFIG_DIR/plugins/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+# Update all items to run initial checks
+sketchybar --update
+
+# Reset chevron state file to collapsed on load
+echo "collapsed" > "/tmp/sketchybar_chevron_state"

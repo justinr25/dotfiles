@@ -1,0 +1,24 @@
+theme = Catppuccin Mocha
+
+font-size = 19
+
+font-family = "JetBrainsMono Nerd Font"
+
+background-blur-radius = 20
+
+mouse-hide-while-typing = true
+
+window-decoration = true
+
+macos-option-as-alt = true
+
+# background-opacity = 0.9
+
+# Open Ghostty configuration in Neovim (using ghostty +edit-config)
+keybind = super+,=text:ghostty +edit-config\n
+
+# Map Ctrl+[ to Escape (prevents it from clearing the line in Zsh vi-mode)
+keybind = ctrl+[=text:\x1b
+
+# Map Option+Backspace to delete a word backward (sends Ctrl+W to avoid entering vi normal mode)
+keybind = opt+backspace=text:\x17
