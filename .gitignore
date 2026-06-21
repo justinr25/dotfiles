@@ -1,0 +1,16 @@
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Zsh Files (Caches & History)
+.zsh_history
+.zcompdump*
+
+# API Keys & Sensitive Data
+*.key
+*.pem
+*.token
+.netrc
+secrets.*

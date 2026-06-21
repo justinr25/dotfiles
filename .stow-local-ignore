@@ -1,0 +1,13 @@
+# Ignore Git files
+^\.git$
+^\.gitignore$
+
+# Ignore documentation
+^README\.md$
+^LICENSE$
+
+# Ignore Stow config itself
+^\.stowrc$
+
+# Ignore system files
+^\.DS_Store$
