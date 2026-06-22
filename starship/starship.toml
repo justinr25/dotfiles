@@ -13,6 +13,14 @@ command_timeout = 1000
 # Inserts a blank line between shell prompts
 add_newline = true
 
+[directory]
+# Setting truncation_length to 0 disables directory truncation
+truncation_length = 0
+
+# Setting truncate_to_repo to false prevents shortening the path 
+# to the root of a Git repository when you are inside one
+truncate_to_repo = false
+
 [character]
 success_symbol = '[❯](bold green)'
 error_symbol = '[❯](bold red)'
