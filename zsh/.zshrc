@@ -56,9 +56,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Theme (Oh My Posh)
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/ZSHThemes.json)"
-fi
+#if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+#  eval "$(oh-my-posh init zsh --config ~/ZSHThemes.json)"
+#fi
 
 # Shell History settings
 HISTSIZE=5000
@@ -113,3 +113,4 @@ alias vim='nvim'
 # Shell Integrations
 eval "$(fzf --zsh)" # Set up fzf keybindings and fuzzy completion
 eval "$(zoxide init --cmd cd zsh)" # Initialize zoxide smart jumping (aliased to cd)
+eval "$(starship init zsh)" # Initialize Starship prompt

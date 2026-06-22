@@ -7,6 +7,6 @@ mkdir -p ~/.config
 stow -t ~ zsh
 
 # Stow .config directory configs
-stow -t ~/.config aerospace ghostty sketchybar
+stow -t ~/.config aerospace ghostty sketchybar starship
 
 echo "Dotfiles successfully stowed!"
