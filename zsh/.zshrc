@@ -22,6 +22,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/Users/justinrosales/.antigravity/antigravity/bin:$PATH"
 export PATH="/Users/justinrosales/.antigravity-ide/antigravity-ide/bin:$PATH"
 
+# Added by Antigravity CLI installer
+export PATH="/Users/justinrosales/.local/bin:$PATH"
+
 # Terminal Preferences
 export TERM=xterm-256color
 export EDITOR="nvim"
@@ -90,6 +93,9 @@ bindkey -M viins '^f' autosuggest-accept
 bindkey -M viins '^U' backward-kill-line
 bindkey -M vicmd '^U' backward-kill-line
 
+# Bind Shift+_ (underscore) to go to first non-blank character of the line (Vim behavior)
+bindkey -M vicmd '_' vi-first-non-blank
+
 # Dynamic cursor shapes: Block in Vi command mode, Beam in Vi insert mode
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
@@ -107,8 +113,14 @@ function zle-line-init {
 zle -N zle-line-init
 
 # General Aliases
-alias ls='ls --color'
-alias vim='nvim'
+# alias ls='ls --color'
+# alias vim='nvim'
+alias ls='eza --icons' # better ls
+alias ll='eza -lh --icons --git' # detailed listing
+alias la='eza -lah --icons --git' # detailed listing including hidden files
+alias tree='eza --tree --icons' # tree view
+compdef eza=ls # reuse ls completions for eza (avoids defining a separate completion function)
+alias cat='bat' # better cat
 
 # Shell Integrations
 eval "$(fzf --zsh)" # Set up fzf keybindings and fuzzy completion
