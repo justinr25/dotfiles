@@ -19,11 +19,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Antigravity Paths
-export PATH="/Users/justinrosales/.antigravity/antigravity/bin:$PATH"
-export PATH="/Users/justinrosales/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # Added by Antigravity CLI installer
-export PATH="/Users/justinrosales/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Terminal Preferences
 export TERM=xterm-256color
