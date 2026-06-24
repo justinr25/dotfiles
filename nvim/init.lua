@@ -87,6 +87,42 @@ vim.opt.encoding = "UTF-8"                         -- Set encoding
 -- Cursor settings
 vim.opt.guicursor = "n-v-c-ve:block,i-ci:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
+-- Folding settings
+vim.opt.foldmethod = "expr"                        -- Use expression for folding
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"    -- Use treesitter for folding
+vim.opt.foldlevel = 99                             -- Start with all folds open
+
+-- Key mappings
+vim.g.mapleader = " "                              -- Set leader key to space
+vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
+
+-- Y to EOL
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
+
+-- Center screen when jumping
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+
+-- Better paste behavior
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking deleted text" })
+
+-- Delete without yanking
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+
+-- Better indenting in visual mode
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
+-- Quick file navigation
+vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
+
+-- Quick config editing
+vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
+vim.keymap.set("n", "<leader>rl", ":so $MYVIMRC<CR>", { desc = "Reload config" })
+
 -- Navigate tmux panes and neovim splits seamlessly
 local function navigate(direction)
   return function()
@@ -104,5 +140,3 @@ vim.keymap.set("n", "<C-h>", navigate("h"))
 vim.keymap.set("n", "<C-j>", navigate("j"))
 vim.keymap.set("n", "<C-k>", navigate("k"))
 vim.keymap.set("n", "<C-l>", navigate("l"))
-
-
