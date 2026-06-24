@@ -87,4 +87,22 @@ vim.opt.encoding = "UTF-8"                         -- Set encoding
 -- Cursor settings
 vim.opt.guicursor = "n-v-c-ve:block,i-ci:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
+-- Navigate tmux panes and neovim splits seamlessly
+local function navigate(direction)
+  return function()
+    local win = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd " .. direction)
+    if win == vim.api.nvim_get_current_win() then
+      -- If the window didn't change inside Neovim, tell tmux to switch panes
+      local tmux_directions = { h = "L", j = "D", k = "U", l = "R" }
+      vim.fn.system("tmux select-pane -" .. tmux_directions[direction])
+    end
+  end
+end
+
+vim.keymap.set("n", "<C-h>", navigate("h"))
+vim.keymap.set("n", "<C-j>", navigate("j"))
+vim.keymap.set("n", "<C-k>", navigate("k"))
+vim.keymap.set("n", "<C-l>", navigate("l"))
+
 
