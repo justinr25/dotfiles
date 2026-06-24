@@ -121,6 +121,8 @@ alias la='eza -lah --icons --git' # detailed listing including hidden files
 alias tree='eza --tree --icons' # tree view
 compdef eza=ls # reuse ls completions for eza (avoids defining a separate completion function)
 alias cat='bat' # better cat
+alias glog='PAGER="less -F -X" git log'                              # -F quit if one screen, -X no clear on exit
+alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph'
 
 # Shell Integrations
 eval "$(fzf --zsh)" # Set up fzf keybindings and fuzzy completion
