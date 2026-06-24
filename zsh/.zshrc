@@ -123,6 +123,7 @@ compdef eza=ls # reuse ls completions for eza (avoids defining a separate comple
 alias cat='bat' # better cat
 alias glog='PAGER="less -F -X" git log'                              # git log with smart paging (don't clear screen on exit)
 alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph' # visual ASCII git log graph of all branches
+alias c='clear'
 
 # Shell Integrations
 eval "$(fzf --zsh)" # Set up fzf keybindings and fuzzy completion
