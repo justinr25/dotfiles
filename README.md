@@ -1,4 +1,4 @@
-# Justin's Dotfiles
+# Dotfiles
 
 My personal configuration files managed using [GNU Stow](https://www.gnu.org/software/stow/).
 
