@@ -82,8 +82,8 @@ export KEYTIMEOUT=1 # Reduces delay for switching out of insert mode to 10ms (de
 
 # Custom Keybindings in Vi Mode
 # (Must be defined after 'bindkey -v' or they will be overridden)
-bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^h' backward-delete-char
+bindkey -M viins '^?' backward-delete-char  # Make Backspace delete past the start of insert mode
+bindkey -M viins '^h' backward-delete-char  # Make Ctrl+H/Backspace delete past the start of insert mode
 bindkey -M viins '^W' backward-kill-word
 bindkey -M viins '^[[Z' reverse-menu-complete
 bindkey -M menuselect '^[[Z' reverse-menu-complete
