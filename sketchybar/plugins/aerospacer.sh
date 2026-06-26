@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add Homebrew to PATH (needed for AeroSpace commands when run via launchctl)
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # $1 is the workspace name associated with this item (e.g. 1, 2, A, B...)
 # $FOCUSED_WORKSPACE is passed as an env variable when the event triggers
 sid="$1"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Add Homebrew to PATH (needed for AeroSpace commands when run via launchctl)
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 STATE_FILE="/tmp/sketchybar_chevron_state"
 if [ ! -f "$STATE_FILE" ]; then
     echo "collapsed" > "$STATE_FILE"

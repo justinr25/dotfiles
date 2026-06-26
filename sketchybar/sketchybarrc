@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Add Homebrew to PATH (needed for AeroSpace commands when run via launchctl)
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # Add the aerospace workspace change event
 sketchybar --add event aerospace_workspace_change
 
@@ -96,6 +99,12 @@ sketchybar --add item battery right \
                  update_freq=120 \
                  script="$CONFIG_DIR/plugins/battery.sh" \
            --subscribe battery system_woke power_source_change
+
+# Add listener to dynamically register new workspaces on the fly
+sketchybar --add item aerospace_listener left \
+           --subscribe aerospace_listener aerospace_workspace_change \
+           --set aerospace_listener drawing=off \
+                 script="$CONFIG_DIR/plugins/aerospace_listener.sh"
 
 # Update all items to run initial checks
 sketchybar --update
