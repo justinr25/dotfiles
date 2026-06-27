@@ -12,8 +12,6 @@ vim.opt.scrolloff = 10                             -- Keep 10 lines above/below 
 vim.opt.sidescrolloff = 8                          -- Keep 8 columns left/right of cursor
 vim.opt.cmdheight = 1                              -- Command line height
 vim.opt.spelllang = { "en" }                       -- Set language for spellchecking
-
-
 -- Tabbing / Indentation
 vim.opt.tabstop = 4                                -- Tab width
 vim.opt.shiftwidth = 4                             -- Indent width

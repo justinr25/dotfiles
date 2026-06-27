@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : catpuccin
+-- ABOUT : A popular, soothing colorscheme for Neovim
+-- LINKS :
+--   > github : https://github.com/catppuccin/nvim
+-- ================================================================================================
+
 return {
   {
     "catppuccin/nvim",

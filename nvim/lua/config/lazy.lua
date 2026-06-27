@@ -38,7 +38,13 @@ require("lazy").setup({
     { import = "plugins" },
   },
   install = {
-    colorscheme = { "catppuccin" },
+    colorscheme = { "tokyonight" },
   },
   checker = { enabled = true },
+  rtp = {
+    disabled_plugins = {
+      "netrw",
+      "netrwPlugin",
+    },
+  },
 })
