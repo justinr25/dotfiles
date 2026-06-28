@@ -3,6 +3,9 @@
 -- ABOUT: sets some quality-of-life keymaps
 -- ================================================================================================
 
+-- Easy normal mode
+vim.keymap.set("i", "kj", "<ESC>", { desc = "Enter normal mode" })
+
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
@@ -21,15 +24,15 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yankin
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-vim.keymap.set("n", "<leader>m", ":NvimTreeFocus<CR>", { desc = "Toggle file explorer" })
-vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
+--vim.keymap.set("n", "<leader>e", ":E", { desc = "Toggle file explorer" })
+--vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })

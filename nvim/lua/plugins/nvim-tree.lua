@@ -18,5 +18,9 @@ return {
 				adaptive_size = true,
 			},
 		})
+
+        -- Set keymaps
+        vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+        vim.keymap.set("n", "<leader>m", ":NvimTreeFocus<CR>", { desc = "Focus file explorer" })
 	end,
 }
