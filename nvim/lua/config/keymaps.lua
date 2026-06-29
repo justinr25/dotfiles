@@ -6,6 +6,14 @@
 -- Easy normal mode
 vim.keymap.set("i", "kj", "<ESC>", { desc = "Enter normal mode" })
 
+-- Wrap aware 'j' and 'k'
+vim.keymap.set("n", "j", function()
+	return vim.v.count == 0 and "gj" or "j"
+end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
+vim.keymap.set("n", "k", function()
+	return vim.v.count == 0 and "gk" or "k"
+end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
+
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
@@ -38,26 +46,11 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 vim.keymap.set("n", "<leader>rl", ":so $MYVIMRC<CR>", { desc = "Reload config" })
 
--- Navigate tmux panes and neovim splits seamlessly
-local function navigate(direction)
-  return function()
-    local win = vim.api.nvim_get_current_win()
-    vim.cmd("wincmd " .. direction)
-    if win == vim.api.nvim_get_current_win() then
-      -- If the window didn't change inside Neovim, tell tmux to switch panes
-      local tmux_directions = { h = "L", j = "D", k = "U", l = "R" }
-      vim.fn.system("tmux select-pane -" .. tmux_directions[direction])
-    end
-  end
-end
-vim.keymap.set("n", "<C-h>", navigate("h"))
-vim.keymap.set("n", "<C-j>", navigate("j"))
-vim.keymap.set("n", "<C-k>", navigate("k"))
-vim.keymap.set("n", "<C-l>", navigate("l"))
-
 -- Window splitting
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>sc", "<C-w>c", { desc = "Close split" })
+vim.keymap.set("n", "<leader>so", "<C-w>o", { desc = "Close other splits (only)" })
 
 -- Window resizing
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
