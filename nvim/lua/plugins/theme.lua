@@ -17,7 +17,7 @@ return {
         transparent_background = true, -- Enable transparent background
         show_end_of_buffer = false, -- Hide ~ at end of buffer
         integrations = {
-          cmp = true,
+          blink_cmp = true,
           gitsigns = true,
           nvimtree = true,
           treesitter = true,
