@@ -22,3 +22,6 @@ keybind = ctrl+[=text:\x1b
 
 # Map Option+Backspace to delete a word backward (sends Ctrl+W to avoid entering vi normal mode)
 keybind = opt+backspace=text:\x17
+
+# Keep right option key for typing special symbols, use left option for Alt/Meta shortcuts
+macos-option-as-alt = left
