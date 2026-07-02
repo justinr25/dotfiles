@@ -51,6 +51,7 @@ autoload -Uz compinit && compinit
 zmodload zsh/complist
 
 # Completion styling
+_comp_options+=(globdots) # enables hidden file completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
@@ -77,10 +78,11 @@ setopt hist_find_no_dups
 
 # Vi Editing Mode
 bindkey -v
-export KEYTIMEOUT=1 # Reduces delay for switching out of insert mode to 10ms (default 400ms)
+export KEYTIMEOUT=10 # Reduces delay for switching out of insert mode to 100ms (default 400ms)
 
 # Custom Keybindings in Vi Mode
 # (Must be defined after 'bindkey -v' or they will be overridden)
+bindkey -M viins 'kj' vi-cmd-mode
 bindkey -M viins '^?' backward-delete-char  # Make Backspace delete past the start of insert mode
 bindkey -M viins '^h' backward-delete-char  # Make Ctrl+H/Backspace delete past the start of insert mode
 bindkey -M viins '^W' backward-kill-word
